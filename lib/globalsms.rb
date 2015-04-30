@@ -41,12 +41,13 @@ module GlobalSMS
     end
 
     def multi_send(argv)
-      argv = {
+
+      argv_def = {
         time: "now",
         turkish_character: "1"
-      }.merge(argv)
+      }
 
-      [:originator, :numbers, :text].each { |arg| puts "ERROR: #{arg} expecting" and return unless argv[arg] }
+      argv_array = argv.map { |arg| argv_def.merge(arg) }
 
       body = "data=#{argv.to_json.to_s}"
       uri = "#{api_base_url}/sms/send/single?key=#{api_key}&secret=#{api_secret}"
