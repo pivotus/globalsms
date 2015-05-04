@@ -1,0 +1,2 @@
+module GlobalSMS
+end
