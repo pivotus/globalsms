@@ -1,5 +1,6 @@
 require "globalsms/version"
 require 'httpclient'
+require 'json'
 require 'json/ext'
 
 module GlobalSMS
@@ -22,8 +23,7 @@ module GlobalSMS
       uri = "#{@api_base_url}/sms/send/single?key=#{@api_key}&secret=#{@api_secret}"
 
       c = HTTPClient.new
-      res = c.post(uri, body)
-
+      return JSON.parse(c.post(uri, body).body)
     end
 
     def bulk_send(argv)
@@ -35,7 +35,7 @@ module GlobalSMS
       [:originator, :numbers, :text].each { |arg| puts "ERROR: #{arg} expecting" and return unless argv[arg] }
 
       body = "data=#{argv.to_json.to_s}"
-      uri = "#{api_base_url}/sms/send/single?key=#{api_key}&secret=#{api_secret}"
+      uri = "#{@api_base_url}/sms/send/single?key=#{@api_key}&secret=#{@api_secret}"
 
       c = HTTPClient.new
       c.post(uri, body)
@@ -51,7 +51,7 @@ module GlobalSMS
       argv_array = argv.map { |arg| argv_def.merge(arg) }
 
       body = "data=#{argv_array.to_json.to_s}"
-      uri = "#{api_base_url}/sms/send/single?key=#{api_key}&secret=#{api_secret}"
+      uri = "#{@api_base_url}/sms/send/single?key=#{@api_key}&secret=#{@api_secret}"
 
       c = HTTPClient.new
       c.post(uri, body)
