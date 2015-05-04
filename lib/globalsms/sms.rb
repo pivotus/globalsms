@@ -1,7 +1,6 @@
 require "globalsms/version"
 require 'httpclient'
 require 'json'
-require 'json/ext'
 
 module GlobalSMS
   class SMS
@@ -17,8 +16,6 @@ module GlobalSMS
         turkish_character: "1"
       }.merge(argv)
 
-      [:originator, :numbers, :text].each { |arg| puts "ERROR: #{arg} expecting" and return unless argv[arg] }
-
       body = "data=#{argv.to_json.to_s}"
       uri = "#{@api_base_url}/sms/send/single?key=#{@api_key}&secret=#{@api_secret}"
 
@@ -32,13 +29,11 @@ module GlobalSMS
         turkish_character: "1"
       }.merge(argv)
 
-      [:originator, :numbers, :text].each { |arg| puts "ERROR: #{arg} expecting" and return unless argv[arg] }
-
       body = "data=#{argv.to_json.to_s}"
       uri = "#{@api_base_url}/sms/send/single?key=#{@api_key}&secret=#{@api_secret}"
 
       c = HTTPClient.new
-      c.post(uri, body)
+      return JSON.parse(c.post(uri, body).body)
     end
 
     def multi_send(argv)
@@ -51,10 +46,10 @@ module GlobalSMS
       argv_array = argv.map { |arg| argv_def.merge(arg) }
 
       body = "data=#{argv_array.to_json.to_s}"
-      uri = "#{@api_base_url}/sms/send/single?key=#{@api_key}&secret=#{@api_secret}"
+      uri = "#{@api_base_url}/sms/send/multi?key=#{@api_key}&secret=#{@api_secret}"
 
       c = HTTPClient.new
-      c.post(uri, body)
+      return JSON.parse(c.post(uri, body).body)
     end
   end
 end
