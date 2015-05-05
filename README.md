@@ -90,27 +90,27 @@ sms = GlobalSMS::SMS.new('api-key', 'api-secret')
 
 argv = [
   { originator: "DENEME",
-  numbers: "5493666154",
-  text: "Mesaj Metni",
-  turkish_character: "1"
+    numbers: "5493666154",
+    text: "Mesaj Metni",
+    turkish_character: "1"
   },
 
   { originator: "DENEME",
-  numbers: "5493666155",
-  text: "Bir Başka Mesaj Metni",
-  turkish_character: "1"
+    numbers: "5493666155",
+    text: "Bir Başka Mesaj Metni",
+    turkish_character: "1"
   },
 
   { originator: "DENEME",
-  numbers: "5493666156",
-  text: "Ve Bir Başka Mesaj Metni",
-  turkish_character: "1"
+    numbers: "5493666156",
+    text: "Ve Bir Başka Mesaj Metni",
+    turkish_character: "1"
   },
 
   { originator: "DENEME",
-  numbers: "5493666157",
-  text: "Ve De Bir Başka Mesaj Metni",
-  turkish_character: "1"
+    numbers: "5493666157",
+    text: "Ve De Bir Başka Mesaj Metni",
+    turkish_character: "1"
   }
 ]
 
@@ -273,8 +273,14 @@ Bu Gem, GlobalHaberlesme.com dan bağımsız bir geliştirici tarafından oluşt
 
 ## Katkıda Bulunma
 
-Geliştirme öneri ve katkılarınızı bekliyorum.
+Geliştirmeye yapacağınız öneri ve katkılarınızı bekliyorum.
 
 ## Lisans
 
 Bu Gem, MIT Lisansı ile korunur.
+
+## Bağlantılar
+
+Orijinal API Dokümantasyonu `http://uye.globalhaberlesme.com/uploads/api_user.pdf`
+
+RubyGems `https://rubygems.org/gems/globalsms`
