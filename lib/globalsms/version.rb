@@ -1,3 +1,3 @@
-module Globalsms
+module GlobalSMS
   VERSION = "0.1.0"
 end

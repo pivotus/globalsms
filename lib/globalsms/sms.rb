@@ -5,7 +5,7 @@ require 'json'
 module GlobalSMS
   class SMS
     def initialize(api_key, api_secret)
-      @api_base_url = "http://api.globalhaberlesme.com"
+      @api_base_url = "http://api.globalhaberlesme.com" #TODO: DEFAULTS a çıkart
       @api_key = api_key
       @api_secret = api_secret
     end

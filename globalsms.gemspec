@@ -5,7 +5,7 @@ require 'globalsms/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "globalsms"
-  spec.version       = Globalsms::VERSION
+  spec.version       = GlobalSMS::VERSION
   spec.authors       = ["Salih Özdemir"]
   spec.email         = ["me@salihozdemir.net"]
 

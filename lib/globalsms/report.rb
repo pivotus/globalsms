@@ -39,7 +39,7 @@ module GlobalSMS
       c = HTTPClient.new
       return JSON.parse(c.get(uri).body)
     end
-
+    
     def user_info
       uri = "#{@api_base_url}/user/info?key=#{@api_key}&secret=#{@api_secret}"
       c = HTTPClient.new
