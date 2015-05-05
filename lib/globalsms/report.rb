@@ -45,8 +45,5 @@ module GlobalSMS
       c = HTTPClient.new
       return JSON.parse(c.get(uri).body)
     end
-
-
-
   end
 end
