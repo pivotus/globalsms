@@ -4,23 +4,135 @@ Ruby geliştiricileri için GlobalHaberlesme.com API lerini kullanan Ruby Gem'id
 
 ## Kurulum
 
-Add this line to your application's Gemfile:
+Uygulama içerisinde kullanmak için aşağıdaki satırı Gemfile'a ekleyin:
 
 ```ruby
 gem 'globalsms'
 ```
 
-And then execute:
+Sonra kurulmasını sağlayın:
 
     $ bundle
 
-Or install it yourself as:
+Ya da kendiniz kurun:
 
     $ gem install globalsms
 
-## Kullanım
+## Örnek Kullanım
 
-TODO
+### SMS Gönderme
+
+Mesaj göndermek için tanımlanmış fonksiyonlara argüman olarak **hash** verilir. Fonksiyon geriye **hash** döner.
+
+Ön tanımlı değerler:
+
+    turkish_character: "1"
+    time: "now"
+
+Kullanıcının gireceği değerler:
+
+    originator: "DENEME",
+    numbers: "5493666154",
+    text: "Mesaj Metni",
+
+#### Tek mesaj gönderen örnek kod:
+
+```ruby
+require 'globalsms'
+
+sms = GlobalSMS::SMS.new('api-key','api-secret')
+
+argv = {
+  originator: "DENEME",
+  numbers: "5493666154",
+  text: "Mesaj Metni",
+  turkish_character: "1"
+}
+
+sms.single_send(argv)
+
+# {
+#     "result" => true, "message_id" => "239916", "numbers" => ["5493666154"], "total_numbers_count" => 1, "turkcell_numbers_count" => 0, "vodafone_numbers_count" => 1, "avea_numbers_count" => 0, "total_credit" => 1, "0" => ""
+# }
+
+```
+
+#### Aynı mesajı birden fazla numaraya gönderen örnek kod:
+
+```ruby
+require 'globalsms'
+
+sms = GlobalSMS::SMS.new('api-key','api-secret')
+
+argv = {
+  originator: "DENEME",
+  numbers: ["5493666154", "5493666155", "5493666156", "5493666157"],
+  text: "Mesaj Metni",
+  turkish_character: "1"
+}
+
+sms.bulk_send(argv)
+
+# {
+#     "result" => true, "message_id" => "239922", "numbers" => ["5493666154", "5493666155", "5493666156", "5493666157"
+#         "..."
+#     ], "total_numbers_count" => 4, "turkcell_numbers_count" => 0, "vodafone_numbers_count" => 4, "avea_numbers_count" => 0, "total_credit" => 4, "0" => ""
+# }
+
+```
+
+#### Tek bir çağrıda birden fazla numaraya farklı mesajlar gönderen örnek kod:
+
+```ruby
+require 'globalsms'
+
+sms = GlobalSMS::SMS.new('api-key','api-secret')
+
+argv = [
+  { originator: "DENEME",
+  numbers: "5493666154",
+  text: "Mesaj Metni",
+  turkish_character: "1"
+  },
+
+  { originator: "DENEME",
+  numbers: "5493666155",
+  text: "Bir Başka Mesaj Metni",
+  turkish_character: "1"
+  },
+
+  { originator: "DENEME",
+  numbers: "5493666156",
+  text: "Ve Bir Başka Mesaj Metni",
+  turkish_character: "1"
+  },
+
+  { originator: "DENEME",
+  numbers: "5493666157",
+  text: "Ve De Bir Başka Mesaj Metni",
+  turkish_character: "1"
+  }
+]
+
+sms.multi_send(argv)
+
+# {
+#     "result" => true, "results" => [{
+#         "result" => true, "message_id" => "239928", "numbers" => ["5493666154"], "total_numbers_count" => 1, "turkcell_numbers_count" => 0, "vodafone_numbers_count" => 1, "avea_numbers_count" => 0, "total_credit" => 1, "0" => ""
+#     }, {
+#         "result" => true, "message_id" => "239929", "numbers" => ["5493666155"], "total_numbers_count" => 1, "turkcell_numbers_count" => 0, "vodafone_numbers_count" => 1, "avea_numbers_count" => 0, "total_credit" => 1, "0" => ""
+#     }, {
+#         "result" => true, "message_id" => "239930", "numbers" => ["5493666156"], "total_numbers_count" => 1, "turkcell_numbers_count" => 0, "vodafone_numbers_count" => 1, "avea_numbers_count" => 0, "total_credit" => 1, "0" => ""
+#     }, {
+#         "result" => true, "message_id" => "239931", "numbers" => ["5493666157"], "total_numbers_count" => 1, "turkcell_numbers_count" => 0, "vodafone_numbers_count" => 1, "avea_numbers_count" => 0, "total_credit" => 1, "0" => ""
+#     }]
+# }
+
+```
+
+### Rapor Alma
+
+
 
 ## Development
 
