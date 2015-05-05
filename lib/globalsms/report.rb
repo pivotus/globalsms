@@ -24,5 +24,29 @@ module GlobalSMS
       end
       return res
     end
+
+    def report_last(argv=1)
+      uri = "#{@api_base_url}/sms/report/sent?limit=#{argv}&key=#{@api_key}&secret=#{@api_secret}"
+      c = HTTPClient.new
+      return JSON.parse(c.get(uri).body)
+    end
+
+    def report_between()
+    end
+    
+    def originator_list
+      uri = "#{@api_base_url}/originator/list?key=#{@api_key}&secret=#{@api_secret}"
+      c = HTTPClient.new
+      return JSON.parse(c.get(uri).body)
+    end
+
+    def user_info
+      uri = "#{@api_base_url}/user/info?key=#{@api_key}&secret=#{@api_secret}"
+      c = HTTPClient.new
+      return JSON.parse(c.get(uri).body)
+    end
+
+
+
   end
 end
