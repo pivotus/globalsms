@@ -142,7 +142,6 @@ sms = GlobalSMS::REPORT.new('api-key', 'api-secret')
 
 sms.single_report(239916)
 
-
 # {
 #   "result" => true, "data" => [{
 #     "id" => "34163245", "created_datetime" => "2015-05-05 14:54:32", "gsm_no" => "5493666154", "gsm_operator" => "2", "sent_status" => "2", "sent_datetime" => "2015-05-05 14:54:37", "out_status" => "255", "out_datetime" => "2015-05-05 14:54:37", "report_message" => "COMMAND_ERROR", "name" => nil
