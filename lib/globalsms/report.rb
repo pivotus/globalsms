@@ -31,7 +31,17 @@ module GlobalSMS
       return JSON.parse(c.get(uri).body)
     end
 
-    def report_between()
+    def report_between(argv)
+      argv = {
+        start_time: "00:00:00",
+        end_time: "23:59:59"
+      }.merge(argv)
+
+      uri_with_whitespace = "#{@api_base_url}/sms/report/sent?between_start=#{argv[:start_date]} #{argv[:start_time]}&between_end=#{argv[:end_date]} #{argv[:end_time]}&key=#{@api_key}&secret=#{@api_secret}"
+      uri = URI.parse(URI.encode(uri_with_whitespace.strip))
+
+      c = HTTPClient.new
+      return JSON.parse(c.get(uri).body)
     end
     
     def originator_list
