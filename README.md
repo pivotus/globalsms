@@ -231,7 +231,40 @@ sms.report_last(10)
 
 #### Belirli tarihler arasında gönderilmiş mesajlara ait raporları döndüren örnek kod:
 
-TODO: Geliştirme aşamasındadır.
+Bu fonsiyon argüman olarak **hash** alır ve sonuç olarak **hash** döner.
+
+Ön tanımlı değerler:
+
+    start_time: "00:00:00"
+    end_time: "23:59:59"
+
+Kullanıcının gireceği değerler:
+
+    start_date: "2015-05-06"
+    end_date: "2015-05-06"
+
+```ruby
+require 'globalsms'
+
+sms = GlobalSMS::REPORT.new('api-key','api-secret')
+
+argv = {
+  start_date: "2015-05-06",
+  end_date: "2015-05-06",
+  start_time: "20:21:20",
+  end_time: "20:22:00"
+}
+
+sms.report_between(argv)
+
+# {
+#   "result" => true, "data" => [{
+#     "id" => "243408", "created_datetime" => "2015-05-06 20:21:30", "originator" => "DENEME", "originator_id" => "1649", "total_num" => "2", "pieces" => "1", "total_sent" => "2", "num_reached" => "2", "num_not_reached" => "0", "num_waiting_for_time" => "0", "text" => "Mesaj Metni", "time_to_send" => "2015-05-06 20:21:30"
+#   }], "totals" => {
+#     "total_message" => "1", "total_reached" => "2", "total_sms" => "2"
+#   }
+# }
+```
 
 #### Orinigator (gönderici adı) listeleyen örnek kod:
 
