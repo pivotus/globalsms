@@ -13,7 +13,7 @@ module GlobalSMS
     def single_send(argv)
       argv = {
         time: "now",
-        turkish_character: "1"
+        turkish_character: "0"
       }.merge(argv)
 
       body = "data=#{argv.to_json.to_s}"
@@ -26,7 +26,7 @@ module GlobalSMS
     def bulk_send(argv)
       argv = {
         time: "now",
-        turkish_character: "1"
+        turkish_character: "0"
       }.merge(argv)
 
       body = "data=#{argv.to_json.to_s}"
@@ -40,7 +40,7 @@ module GlobalSMS
 
       argv_def = {
         time: "now",
-        turkish_character: "1"
+        turkish_character: "0"
       }
 
       argv_array = argv.map { |arg| argv_def.merge(arg) }

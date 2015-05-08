@@ -26,8 +26,10 @@ Mesaj göndermek için tanımlanmış fonksiyonlara argüman olarak **hash** ver
 
 Ön tanımlı değerler:
 
-    turkish_character: "1"
+    turkish_character: "0"
     time: "now"
+
+`turkish_character: "0"` olarak verilmesine karşın, mesaj Türkçe karakter içeriyorsa Türkçe karakterler değiştirilerek gönderilir. Örneğin `TÜRKÇE KARAKTER İÇEREN BİR MESAJ` olarak gönderilen bir mesaj `TURKCE KARAKTER iCEREN BiR MESAJ` olarak iletilir.
 
 Kullanıcının gireceği değerler:
 
