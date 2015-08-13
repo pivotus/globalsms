@@ -37,7 +37,7 @@ Kullanıcının gireceği değerler:
     numbers: "5493666154"
     text: "Mesaj Metni"
 
-#### Tek mesaj gönderen örnek kod:
+#### Bir mesaj gönderme
 
 ```ruby
 require 'globalsms'
@@ -58,7 +58,7 @@ sms.single_send(argv)
 # }
 ```
 
-#### Aynı mesajı birden fazla numaraya gönderen örnek kod:
+#### Aynı mesajı birden fazla numaraya gönderme
 
 NOT: Tek mesaj gönderme yöntemiyle aynıdır. Sadece `numbers` değerine dizi olarak birden fazla numara verilir. Tek bir `message_id` üretir.
 
@@ -83,7 +83,7 @@ sms.single_send(argv)
 # }
 ```
 
-#### Tek bir çağrıda birden fazla numaraya farklı mesajlar gönderen örnek kod:
+#### Tek bir çağrıda birden fazla numaraya farklı mesajlar gönderme
 
 ```ruby
 require 'globalsms'
@@ -135,7 +135,7 @@ sms.multi_send(argv)
 
 Gönderilmiş mesajlara ait raporları almak için fonksiyonlara argüman olarak tek bir çağrı için `message_id`, birden fazla çağrı için `message_id` leri içeren bir array verilir. Fonksiyon geriye **hash** döndürür.
 
-#### (message) Tek mesaja ait raporları döndüren örnek kod:
+#### Bir mesaja ait raporları görüntüleme
 
 ```ruby
 require 'globalsms'
@@ -153,7 +153,7 @@ sms.message(239916)
 # }
 ```
 
-#### Son x mesaja ait raporları döndüren örnek kod:
+#### Son x mesaja ait raporları görüntüleme
 
 Argüman verilmezse, ön tanımlı olarak en son yollanan (1) mesaja ait raporu döndürür.
 
@@ -191,7 +191,7 @@ sms.last_n(10)
 # }
 ```
 
-#### Belirli tarihler arasında gönderilmiş mesajlara ait raporları döndüren örnek kod:
+#### Belirli tarihler arasında gönderilmiş mesajlara ait raporları görüntüleme
 
 Bu fonsiyon argüman olarak **hash** alır ve sonuç olarak **hash** döner.
 
@@ -228,7 +228,7 @@ sms.between(argv)
 # }
 ```
 
-#### Orinigator (gönderici adı) listeleyen örnek kod:
+#### Gönderici adlarını görüntüleme
 
 Bu fonksiyon argüman almaz.
 
@@ -246,7 +246,7 @@ sms.originator_list
 # }
 ```
 
-#### Kullanıcı detaylarını ve kalan kredi bilgisini döndüren örnek kod:
+#### Kullanıcı detaylarını ve kalan kredi bilgisini görüntüleme
 
 ```ruby
 require 'globalsms'
