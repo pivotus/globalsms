@@ -1,55 +1,32 @@
-require "globalsms/version"
-require 'httpclient'
-require 'json'
-
 module GlobalSMS
   class SMS
     def initialize(api_key, api_secret)
-      @api_base_url = "http://api.globalhaberlesme.com" #TODO: DEFAULTS a çıkart
       @api_key = api_key
       @api_secret = api_secret
-    end
-    
-    def single_send(argv)
-      argv = {
-        time: "now",
-        turkish_character: "0"
-      }.merge(argv)
-
-      body = "data=#{argv.to_json.to_s}"
-      uri = "#{@api_base_url}/sms/send/single?key=#{@api_key}&secret=#{@api_secret}"
-
-      c = HTTPClient.new
-      return JSON.parse(c.post(uri, body).body)
-    end
-
-    def bulk_send(argv)
-      argv = {
-        time: "now",
-        turkish_character: "0"
-      }.merge(argv)
-
-      body = "data=#{argv.to_json.to_s}"
-      uri = "#{@api_base_url}/sms/send/single?key=#{@api_key}&secret=#{@api_secret}"
-
-      c = HTTPClient.new
-      return JSON.parse(c.post(uri, body).body)
-    end
-
-    def multi_send(argv)
-
-      argv_def = {
-        time: "now",
-        turkish_character: "0"
+      @default_args = {
+        time: 'now',
+        turkish_character: '0'
       }
+    end
 
-      argv_array = argv.map { |arg| argv_def.merge(arg) }
+    def single_send(message)
+      message = @default_args.merge(message)
+      post_to_api('single', message)
+    end
 
-      body = "data=#{argv_array.to_json.to_s}"
-      uri = "#{@api_base_url}/sms/send/multi?key=#{@api_key}&secret=#{@api_secret}"
+    def multi_send(messages)
+      messages = messages.map { |message| @default_args.merge(message) }
+      post_to_api('multi', messages)
+    end
 
-      c = HTTPClient.new
-      return JSON.parse(c.post(uri, body).body)
+    private
+
+    def post_to_api(uri, data)
+      client = HTTPClient.new
+      data = "data=#{data.to_json.to_s}"
+      uri = "#{API_BASE_URL}/sms/send/#{to}?key=#{@api_key}&secret=#{@api_secret}"
+      response = client.post(uri, data)
+      JSON.parse(response.body)
     end
   end
 end
