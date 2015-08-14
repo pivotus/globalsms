@@ -21,7 +21,7 @@ module GlobalSMS
 
     private
 
-    def post_to_api(uri, data)
+    def post_to_api(to, data)
       client = HTTPClient.new
       data = "data=#{data.to_json.to_s}"
       uri = "#{API_BASE_URL}/sms/send/#{to}?key=#{@api_key}&secret=#{@api_secret}"

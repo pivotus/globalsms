@@ -228,6 +228,8 @@ sms.between(argv)
 # }
 ```
 
+### Bilgi Alma
+
 #### Gönderici adlarını görüntüleme
 
 Bu fonksiyon argüman almaz.
@@ -235,7 +237,7 @@ Bu fonksiyon argüman almaz.
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::REPORT.new('api-key', 'api-secret')
+sms = GlobalSMS::INFO.new('api-key', 'api-secret')
 
 sms.originator_list
 
@@ -251,7 +253,7 @@ sms.originator_list
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::REPORT.new('api-key', 'api-secret')
+sms = GlobalSMS::INFO.new('api-key', 'api-secret')
 
 sms.user_info
 
