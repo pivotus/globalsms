@@ -1,7 +1,8 @@
 module GlobalSMS
   class SMS
     TIME = 'now'
-    TURKISH_CHARACTER = "0"
+    TURKISH = "1"
+    ENGLISH = "O"
     SELECTED = [:time, :turkish_character, :originator]
 
     attr_reader :api_key, :api_secret, :time, :turkish_character, :originator
@@ -11,7 +12,7 @@ module GlobalSMS
       @api_secret = args[:api_secret]
       @default_args = {
         time: TIME,
-        turkish_character: TURKISH_CHARACTER
+        turkish_character: ENGLISH
       }
       @default_args.merge!(args.select { |key, value| SELECTED.include?(key) })
     end
