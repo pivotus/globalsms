@@ -1,8 +1,8 @@
 module GlobalSMS
   class SMS
     TIME = 'now'
-    TURKISH = "1"
-    ENGLISH = "O"
+    ENGLISH = 'O'
+    TURKISH = '1'
     SELECTED = [:time, :turkish_character, :originator]
 
     attr_reader :api_key, :api_secret, :time, :turkish_character, :originator
@@ -19,17 +19,17 @@ module GlobalSMS
 
     def single_send(message)
       message = @default_args.merge(message)
-      post_to_api('single', message)
+      post_request('single', message)
     end
 
     def multi_send(messages)
       messages = messages.map { |message| @default_args.merge(message) }
-      post_to_api('multi', messages)
+      post_request('multi', messages)
     end
 
     private
 
-    def post_to_api(to, data)
+    def post_request(to, data)
       client = HTTPClient.new
       data = "data=#{data.to_json.to_s}"
       uri = "#{API_BASE_URL}/sms/send/#{to}?key=#{@api_key}&secret=#{@api_secret}"

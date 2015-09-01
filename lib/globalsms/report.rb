@@ -7,12 +7,12 @@ module GlobalSMS
 
     def message(message_id)
       uri = "/sms/report/#{message_id}?key=#{@api_key}&secret=#{@api_secret}"
-      get_to_api(uri)
+      get_request(uri)
     end
 
     def last_n(limit=1)
       uri = "/sms/report/sent?limit=#{limit}&key=#{@api_key}&secret=#{@api_secret}"
-      get_to_api(uri)
+      get_request(uri)
     end
 
     def between(argv)
@@ -23,12 +23,12 @@ module GlobalSMS
 
       uri = "/sms/report/sent?between_start=#{argv[:start_date]} #{argv[:start_time]}&between_end=#{argv[:end_date]} #{argv[:end_time]}&key=#{@api_key}&secret=#{@api_secret}"
       safe_uri = URI.parse(URI.encode(uri))
-      get_to_api(safe_uri)
+      get_request(safe_uri)
     end
 
     private
 
-    def get_to_api(uri)
+    def get_request(uri)
       client = HTTPClient.new
       response = client.get("#{API_BASE_URL}#{uri}")
       JSON.parse(response.body)

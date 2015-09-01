@@ -7,17 +7,17 @@ module GlobalSMS
 
     def originator_list
       uri = "/originator/list?key=#{@api_key}&secret=#{@api_secret}"
-      get_to_api(uri)
+      get_request(uri)
     end
 
     def user_info
       uri = "/user/info?key=#{@api_key}&secret=#{@api_secret}"
-      get_to_api(uri)
+      get_request(uri)
     end
 
     private
 
-    def get_to_api(uri)
+    def get_request(uri)
       client = HTTPClient.new
       response = client.get("#{API_BASE_URL}#{uri}")
       JSON.parse(response.body)
