@@ -1,12 +1,19 @@
 module GlobalSMS
   class SMS
-    def initialize(api_key, api_secret)
-      @api_key = api_key
-      @api_secret = api_secret
+    TIME = 'now'
+    TURKISH_CHARACTER = "0"
+    SELECTED = [:time, :turkish_character, :originator]
+
+    attr_reader :api_key, :api_secret, :time, :turkish_character, :originator
+
+    def initialize(args)
+      @api_key = args[:api_key]
+      @api_secret = args[:api_secret]
       @default_args = {
-        time: 'now',
-        turkish_character: '0'
+        time: TIME,
+        turkish_character: TURKISH_CHARACTER
       }
+      @default_args.merge!(args.select { |key, value| SELECTED.include?(key) })
     end
 
     def single_send(message)

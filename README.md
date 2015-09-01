@@ -33,25 +33,39 @@ Mesaj göndermek için tanımlanmış fonksiyonlara argüman olarak **hash** ver
 
 Kullanıcının gireceği değerler:
 
-    originator: "DENEME"
     numbers: "5493666154"
     text: "Mesaj Metni"
+
+Nesne üretme:
+
+SMS gönderme işlemi yapmak üzere GlobalSMS:SMS sınıfından bir nesne üretirken argüman olarak **hash** verilir. Örneğin,
+
+```ruby
+init_args = {
+  api_key: "api-key"
+  api_secret: "api-secret"
+  originator: "USTAD",
+  turkish_character: "1"
+}
+
+sms = GlobalSMS::SMS.new(init_args)
+```
 
 #### Bir mesaj gönderme
 
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::SMS.new('api-key', 'api-secret')
+sms = GlobalSMS::SMS.new(init_args)
 
-argv = {
+args = {
   originator: "DENEME",
   numbers: "5493666154",
   text: "Mesaj Metni",
   turkish_character: "1"
 }
 
-sms.single_send(argv)
+sms.single_send(args)
 
 # {
 #   "result" => true, "message_id" => "239916", "numbers" => ["5493666154"], "total_numbers_count" => 1, "turkcell_numbers_count" => 0, "vodafone_numbers_count" => 1, "avea_numbers_count" => 0, "total_credit" => 1, "0" => ""
@@ -65,16 +79,16 @@ NOT: Tek mesaj gönderme yöntemiyle aynıdır. Sadece `numbers` değerine dizi 
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::SMS.new('api-key', 'api-secret')
+sms = GlobalSMS::SMS.new(init_args)
 
-argv = {
+args = {
   originator: "DENEME",
   numbers: ["5493666154", "5493666155", "5493666156", "5493666157"],
   text: "Mesaj Metni",
   turkish_character: "1"
 }
 
-sms.single_send(argv)
+sms.single_send(args)
 
 # {
 #   "result" => true, "message_id" => "239922", "numbers" => ["5493666154", "5493666155", "5493666156", "5493666157"
@@ -88,9 +102,9 @@ sms.single_send(argv)
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::SMS.new('api-key', 'api-secret')
+sms = GlobalSMS::SMS.new(init_args)
 
-argv = [
+args = [
   { originator: "DENEME",
     numbers: "5493666154",
     text: "Mesaj Metni",
@@ -116,7 +130,7 @@ argv = [
   }
 ]
 
-sms.multi_send(argv)
+sms.multi_send(args)
 
 # {
 #   "result" => true, "results" => [{
@@ -135,12 +149,26 @@ sms.multi_send(argv)
 
 Gönderilmiş mesajlara ait raporları almak için fonksiyonlara argüman olarak tek bir çağrı için `message_id`, birden fazla çağrı için `message_id` leri içeren bir array verilir. Fonksiyon geriye **hash** döndürür.
 
+
+Nesne üretme:
+
+Rapor görüntüleme işlemi yapmak üzere GlobalSMS:REPORT sınıfından bir nesne üretirken argüman olarak **hash** verilir. Örneğin,
+
+```ruby
+init_args = {
+  api_key: "api-key"
+  api_secret: "api-secret"
+}
+
+sms = GlobalSMS::REPORT.new(init_args)
+```
+
 #### Bir mesaja ait raporları görüntüleme
 
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::REPORT.new('api-key', 'api-secret')
+sms = GlobalSMS::REPORT.new(init_args)
 
 sms.message(239916)
 
@@ -160,7 +188,7 @@ Argüman verilmezse, ön tanımlı olarak en son yollanan (1) mesaja ait raporu 
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::REPORT.new('api-key', 'api-secret')
+sms = GlobalSMS::REPORT.new(init_args)
 
 sms.last_n(10)
 
@@ -208,16 +236,16 @@ Kullanıcının gireceği değerler:
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::REPORT.new('api-key','api-secret')
+sms = GlobalSMS::REPORT.new(init_args)
 
-argv = {
+args = {
   start_date: "2015-05-06",
   end_date: "2015-05-06",
   start_time: "20:21:20",
   end_time: "20:22:00"
 }
 
-sms.between(argv)
+sms.between(args)
 
 # {
 #   "result" => true, "data" => [{
@@ -230,6 +258,19 @@ sms.between(argv)
 
 ### Bilgi Alma
 
+Nesne üretme:
+
+Bilgi alma işlemi yapmak üzere GlobalSMS:INFO sınıfından bir nesne üretirken argüman olarak **hash** verilir. Örneğin,
+
+```ruby
+init_args = {
+  api_key: "api-key"
+  api_secret: "api-secret"
+}
+
+sms = GlobalSMS::INFO.new(init_args)
+```
+
 #### Gönderici adlarını görüntüleme
 
 Bu fonksiyon argüman almaz.
@@ -237,7 +278,7 @@ Bu fonksiyon argüman almaz.
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::INFO.new('api-key', 'api-secret')
+sms = GlobalSMS::INFO.new(init_args)
 
 sms.originator_list
 
@@ -253,7 +294,7 @@ sms.originator_list
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::INFO.new('api-key', 'api-secret')
+sms = GlobalSMS::INFO.new(init_args)
 
 sms.user_info
 

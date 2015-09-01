@@ -1,8 +1,8 @@
 module GlobalSMS
   class REPORT
-    def initialize(api_key, api_secret)
-      @api_key = api_key
-      @api_secret = api_secret
+    def initialize(args)
+      @api_key = args[:api_key]
+      @api_secret = args[:api_secret]
     end
 
     def message(message_id)
