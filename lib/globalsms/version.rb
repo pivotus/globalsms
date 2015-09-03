@@ -1,3 +1,3 @@
 module GlobalSMS
-  VERSION = '0.4.22'
+  VERSION = '1.0.0'
 end
