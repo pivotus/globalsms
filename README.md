@@ -91,11 +91,11 @@ args = {
 sms.single_send(args)
 
 # {
-#   "result" => true, "message_id" => "239922", "numbers" => ["5493666154", "5493666155", "5493666156", "5493666157"
-#     "..."
-#   ], "total_numbers_count" => 4, "turkcell_numbers_count" => 0, "vodafone_numbers_count" => 4, "avea_numbers_count" => 0, "total_credit" => 4, "0" => ""
+#   "result" => true, "message_id" => "239922", "numbers" => ["5493666154", "5493666155", "5493666156", "5493666157", "..."], "total_numbers_count" => 5, "turkcell_numbers_count" => 0, "vodafone_numbers_count" => 5, "avea_numbers_count" => 0, "total_credit" => 5, "0" => ""
 # }
 ```
+
+**NOT:** 4'den fazla numaraya mesaj gönderilirken dönen cevapta 4'den sonraki numaralar `"..."` olarak kısaltılır.
 
 #### Tek bir çağrıda birden fazla numaraya farklı mesajlar gönderme
 
