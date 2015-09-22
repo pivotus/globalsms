@@ -5,8 +5,8 @@ module GlobalSMS
       @api_secret = args[:api_secret]
     end
 
-    def message(message_id)
-      uri = "/sms/report/#{message_id}?key=#{@api_key}&secret=#{@api_secret}"
+    def message(message_id, limit=250)
+      uri = "/sms/report/#{message_id}?key=#{@api_key}&secret=#{@api_secret}&limit=#{limit}"
       get_request(uri)
     end
 
