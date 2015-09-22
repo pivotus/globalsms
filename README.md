@@ -170,7 +170,7 @@ require 'globalsms'
 
 sms = GlobalSMS::REPORT.new(init_args)
 
-sms.message(239916)
+sms.message(239916, limit=250)
 
 # {
 #   "result" => true, "data" => [{
@@ -180,6 +180,8 @@ sms.message(239916)
 #   }
 # }
 ```
+
+**NOT:** `limit` değişkeni 250 ile ilklenmiştir.
 
 #### Son x mesaja ait raporları görüntüleme
 
