@@ -42,8 +42,8 @@ SMS gönderme işlemi yapmak üzere GlobalSMS:SMS sınıfından bir nesne üreti
 
 ```ruby
 init_args = {
-  api_key: "api-key"
-  api_secret: "api-secret"
+  api_key: "api-key",
+  api_secret: "api-secret",
   originator: "USTAD",
   turkish_character: "1"
 }
@@ -59,10 +59,11 @@ require 'globalsms'
 sms = GlobalSMS::SMS.new(init_args)
 
 args = {
-  originator: "DENEME",
   numbers: "5493666154",
   text: "Mesaj Metni",
-  turkish_character: "1"
+  turkish_character: "1",
+  time: "2015-10-07 12:35:00" # Geleceğe dönük mesaj atılması istendiğinde, geleceğe dair bir tarih/saat verilir.
+  Öntanımlı şu an `now` olarak verilmiştir.
 }
 
 sms.single_send(args)
@@ -105,26 +106,22 @@ require 'globalsms'
 sms = GlobalSMS::SMS.new(init_args)
 
 args = [
-  { originator: "DENEME",
-    numbers: "5493666154",
+  { numbers: "5493666154",
     text: "Mesaj Metni",
     turkish_character: "1"
   },
 
-  { originator: "DENEME",
-    numbers: "5493666155",
+  { numbers: "5493666155",
     text: "Bir Başka Mesaj Metni",
     turkish_character: "1"
   },
 
-  { originator: "DENEME",
-    numbers: "5493666156",
+  { numbers: "5493666156",
     text: "Ve Bir Başka Mesaj Metni",
     turkish_character: "1"
   },
 
-  { originator: "DENEME",
-    numbers: "5493666157",
+  { numbers: "5493666157",
     text: "Ve De Bir Başka Mesaj Metni",
     turkish_character: "1"
   }
@@ -156,7 +153,7 @@ Rapor görüntüleme işlemi yapmak üzere GlobalSMS:REPORT sınıfından bir ne
 
 ```ruby
 init_args = {
-  api_key: "api-key"
+  api_key: "api-key",
   api_secret: "api-secret"
 }
 
@@ -266,7 +263,7 @@ Bilgi alma işlemi yapmak üzere GlobalSMS:INFO sınıfından bir nesne üretirk
 
 ```ruby
 init_args = {
-  api_key: "api-key"
+  api_key: "api-key",
   api_secret: "api-secret"
 }
 
