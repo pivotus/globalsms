@@ -220,12 +220,16 @@ sms.last_n(10)
 
 #### Belirli tarihler arasında gönderilmiş mesajlara ait raporları görüntüleme
 
-Bu fonsiyon argüman olarak **hash** alır ve sonuç olarak **hash** döner.
+Bu fonsiyon argüman olarak **hash** alır ve sonuç olarak **hash** döner. 'limit' değeri sorgu cevabının boyutunu ayarlar. Azami değeri 200-dür. 200-den fazlası için cevap dönmez veya 20 adet döner. Bu sebeple 'start' değeri
+kullanılarak sayfalama yapılır. Örneğin 'limit' değeri 100 ve 'start' değeri 100 ise 2. sayfa(100 ve 200 arası
+değerler) döner. 'limit' ve 'start' değerleri girilmezse ilk 200 kayıt listelenir.
 
 Ön tanımlı değerler:
 
     start_time: "00:00:00"
     end_time: "23:59:59"
+    limit: "200"
+    start: "0"
 
 Kullanıcının gireceği değerler:
 
