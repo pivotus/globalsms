@@ -18,10 +18,12 @@ module GlobalSMS
     def between(argv)
       argv = {
         start_time: '00:00:00',
-        end_time: '23:59:59'
+        end_time: '23:59:59',
+        limit: '200',
+        start: '0'
       }.merge(argv)
 
-      uri = "/sms/report/sent?between_start=#{argv[:start_date]} #{argv[:start_time]}&between_end=#{argv[:end_date]} #{argv[:end_time]}&key=#{@api_key}&secret=#{@api_secret}"
+      uri = "/sms/report/sent?between_start=#{argv[:start_date]} #{argv[:start_time]}&between_end=#{argv[:end_date]} #{argv[:end_time]}&limit=#{argv[:limit]}&start=#{argv[:start]}&key=#{@api_key}&secret=#{@api_secret}"
       safe_uri = URI.parse(URI.encode(uri))
       get_request(safe_uri)
     end
