@@ -142,6 +142,21 @@ sms.multi_send(args)
 # }
 ```
 
+#### İleri tarihli mesajın gönderimini iptal etme
+
+İleri tarihli(gelecekte) gönderilmesi planlanmış bir SMS-in gönderimini iptal etmek için kullanılır. Argüman olarak tek
+bir veya birden fazla `message_id` alabilir.
+
+```ruby
+require 'globalsms'
+
+sms = GlobalSMS::SMS.new(init_args)
+
+sms.cancel(3614893)
+
+# {"result":true,"message_id":"3614893","credit_change":"1"}
+```
+
 ### Rapor Alma
 
 Gönderilmiş mesajlara ait raporları almak için fonksiyonlara argüman olarak tek bir çağrı için `message_id`, birden fazla çağrı için `message_id` leri içeren bir array verilir. Fonksiyon geriye **hash** döndürür.
@@ -157,7 +172,7 @@ init_args = {
   api_secret: "api-secret"
 }
 
-sms = GlobalSMS::REPORT.new(init_args)
+report = GlobalSMS::REPORT.new(init_args)
 ```
 
 #### Bir mesaja ait raporları görüntüleme
@@ -165,9 +180,9 @@ sms = GlobalSMS::REPORT.new(init_args)
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::REPORT.new(init_args)
+report = GlobalSMS::REPORT.new(init_args)
 
-sms.message(239916, limit=250)
+report.message(239916, limit=250)
 
 # {
 #   "result" => true, "data" => [{
@@ -187,9 +202,9 @@ Argüman verilmezse, ön tanımlı olarak en son yollanan (1) mesaja ait raporu 
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::REPORT.new(init_args)
+report = GlobalSMS::REPORT.new(init_args)
 
-sms.last_n(10)
+report.last_n(10)
 
 # {
 #   "result" => true, "data" => [{
@@ -239,7 +254,7 @@ Kullanıcının gireceği değerler:
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::REPORT.new(init_args)
+report = GlobalSMS::REPORT.new(init_args)
 
 args = {
   start_date: "2015-05-06",
@@ -248,7 +263,7 @@ args = {
   end_time: "20:22:00"
 }
 
-sms.between(args)
+report.between(args)
 
 # {
 #   "result" => true, "data" => [{
@@ -271,7 +286,7 @@ init_args = {
   api_secret: "api-secret"
 }
 
-sms = GlobalSMS::INFO.new(init_args)
+info = GlobalSMS::INFO.new(init_args)
 ```
 
 #### Gönderici adlarını görüntüleme
@@ -281,9 +296,9 @@ Bu fonksiyon argüman almaz.
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::INFO.new(init_args)
+info = GlobalSMS::INFO.new(init_args)
 
-sms.originator_list
+info.originator_list
 
 # {
 #   "result" => true, "data" => [{
@@ -297,9 +312,9 @@ sms.originator_list
 ```ruby
 require 'globalsms'
 
-sms = GlobalSMS::INFO.new(init_args)
+info = GlobalSMS::INFO.new(init_args)
 
-sms.user_info
+info.user_info
 
 # {
 #   "result" => true, "data" => {
