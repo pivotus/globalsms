@@ -27,6 +27,13 @@ module GlobalSMS
       post_request('multi', messages)
     end
 
+    def cancel(*args)
+      args.each do |message_id|
+        uri = "/sms/cancel/#{message_id}?key=#{@api_key}&secret=#{@api_secret}"
+        get_request(uri)
+      end
+    end
+
     private
 
     def post_request(to, data)
@@ -34,6 +41,12 @@ module GlobalSMS
       data = "data=#{data.to_json.to_s}"
       uri = "#{API_BASE_URL}/sms/send/#{to}?key=#{@api_key}&secret=#{@api_secret}"
       response = client.post(uri, data)
+      JSON.parse(response.body)
+    end
+
+    def get_request(uri)
+      client = HTTPClient.new
+      response = client.get("#{API_BASE_URL}#{uri}")
       JSON.parse(response.body)
     end
   end
